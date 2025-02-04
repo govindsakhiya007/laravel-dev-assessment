@@ -16,6 +16,65 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property string|null $experience
+ * @property string|null $salary
+ * @property string|null $location
+ * @property string|null $extra_info
+ * @property string $company_name
+ * @property string|null $company_logo
+ * @property string|null $skills
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read mixed $company_logo_url
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Skill> $jobSkills
+ * @property-read int|null $job_skills_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereCompanyLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereCompanyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereExperience($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereExtraInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereSkills($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting whereUpdatedAt($value)
+ */
+	class JobPosting extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\JobPosting> $jobs
+ * @property-read int|null $jobs_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Skill whereUpdatedAt($value)
+ */
+	class Skill extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string|null $phone
