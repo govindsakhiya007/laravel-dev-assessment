@@ -5,6 +5,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps<{
     email: string;
@@ -21,6 +22,7 @@ const form = useForm({
 const submit = () => {
     form.post(route('password.store'), {
         onFinish: () => {
+            toast.success('Password reset successfully.');
             form.reset('password', 'password_confirmation');
         },
     });

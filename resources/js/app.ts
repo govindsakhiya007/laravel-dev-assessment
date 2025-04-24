@@ -1,13 +1,16 @@
 import '../css/app.css';
 import './bootstrap';
+import 'vue3-toastify/dist/index.css'
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, DefineComponent, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+import Toast, { type PluginOptions } from 'vue3-toastify'
+
 import Alpine from 'alpinejs'
 import Clipboard from '@ryangjchandler/alpine-clipboard'
- 
+
 Alpine.plugin(Clipboard)
 Alpine.start()
 
@@ -24,6 +27,10 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(Toast, {
+                autoClose: 3000,
+                position: 'top-right',
+            } as PluginOptions)
             .mount(el);
     },
     progress: {

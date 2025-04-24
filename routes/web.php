@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
 use Inertia\Inertia;
 use Livewire\Livewire;
 
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
 // -- 
 // Livewire update routes
 Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/custom/livewire/update', $handle);
+    return Route::post(env('LIVEWIRE_UPDATE_ROUTE').'/livewire/update', $handle)->name('custom-livewire.update');
 });
 
 require __DIR__.'/auth.php';

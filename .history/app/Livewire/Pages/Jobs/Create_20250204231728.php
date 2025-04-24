@@ -48,7 +48,7 @@ class Create extends Component
             $company_logo = $this->company_logo->store('company_logos', 'public');
         }
 
-        $ = $this->company_logo->store('company_logos', 'public');
+        $company_logo = $this->company_logo->store('company_logos', 'public');
 
         $jobPosting = JobPosting::create([
             'title' => $this->title,

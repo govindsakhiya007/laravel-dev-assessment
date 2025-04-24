@@ -13,7 +13,7 @@
                 <p class="text-5xl font-bold">12.5k</p>
             </div>
             <div class="bg-white border rounded-lg border-gray-100 shadow-sm p-5 space-y-5">
-                <h3>Total Job Postings</h3>
+                <h3>Total Job Postings</h3>dashboard
                 <p class="text-5xl font-bold">4.1k</p>
             </div>
             <div class="bg-white border rounded-lg border-gray-100 shadow-sm p-5 space-y-5">

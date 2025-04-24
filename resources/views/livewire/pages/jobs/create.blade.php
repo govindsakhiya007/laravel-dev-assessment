@@ -31,7 +31,7 @@
             <h1 class="text-2xl font-bold">Create new job posting</h1>
         </div>
 
-        <form wire:submit.prevent="save" class="grid grid-cols-3 gap-4 bg-white p-4 rounded shadow-md">
+        <form wire:submit.prevent="save" enctype="multipart/form-data" class="grid grid-cols-3 gap-4 bg-white p-4 rounded shadow-md">
             
             <div class="col-span-2">
                 <h2 class="text-lg font-semibold mb-4 bg-gray-100 px-4 py-2">Job details</h2>

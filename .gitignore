@@ -24,3 +24,5 @@ yarn-error.log
 
 .DS_store
 /*/**/.DS_store
+.history/
+package-lock.json

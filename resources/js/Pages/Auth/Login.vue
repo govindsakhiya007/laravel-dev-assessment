@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { toast } from 'vue3-toastify';
 
 defineProps<{
     canResetPassword?: boolean;
@@ -21,17 +22,29 @@ const form = useForm({
 const submit = () => {
     axios.post(route('login'), form.data())
         .then(res => {
-            console.log('Response: ', res.data);
+            toast.success('LoggedIn successfully.');
             if (res.data.role == 'admin') {
                 form.reset();
                 location.href = route('admin.dashboard');
             } else {
                 form.reset();
+
                 location.href = route('dashboard');
             }
         })
         .catch(err => {
-            console.error('Error: ', err);
+            if (err.response && err.response.status === 422) {
+                const errors = err.response.data.errors
+                
+                if (errors.email) {
+                    form.setError('email', errors.email[0]);
+                }
+                if (errors.password) {
+                    form.setError('password', errors.password[0]);
+                }
+            } else {
+                toast.error('Unexpected error:', err);
+            }
         });
 };
 </script>

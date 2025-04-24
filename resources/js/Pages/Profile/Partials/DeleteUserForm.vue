@@ -7,6 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { nextTick, ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -27,6 +28,7 @@ const deleteUser = () => {
         onSuccess: () => closeModal(),
         onError: () => passwordInput.value?.focus(),
         onFinish: () => {
+            toast.success('User deleted successfully.');
             form.reset();
         },
     });

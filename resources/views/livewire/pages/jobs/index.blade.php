@@ -1,10 +1,14 @@
-<div>
-    <div class="container mx-auto py-4">
-        <div class="flex justify-between items-center py-8">
-            <h1 class="text-2xl font-bold">Jobs</h1>
-        </div>
-        <div class="w-full">
-            <!-- Start coding here -->
+<div class="container mx-auto py-4">
+    <div class="flex justify-between items-center py-8">
+        <h1 class="text-2xl font-bold">Jobs</h1>
+    </div>
+
+    <div class="w-full">
+        @if($jobs->isEmpty())
+            <div class="bg-white dark:bg-gray-800 text-center p-8 shadow-md sm:rounded-lg">
+                <p class="text-gray-500 dark:text-gray-300 text-lg">There are no jobs postings.</p>
+            </div>
+        @else
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -30,7 +34,7 @@
                                     <th scope="row" class="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap dark:text-white">{{ $job['title'] }}</th>
                                     <td class="px-4 py-3 whitespace-nowrap">{{ str($job->description)->words(7) }}</td>
                                     <td class="px-4 py-3 text-center">
-                                        <img src="{{ $job->company_logo }}" class="h-12 w-auto block mx-auto" alt="{{ $job->company_name }}">
+                                        <img src="{{ $job->company_logo }}" class="h-10 w-auto block mx-auto" alt="{{ $job->company_name }}">
                                     </td>
                                     <td><span class="font-medium text-gray-900">{{ $job->company_name }}</span></td>  
                                     <td class="px-4 py-3">{{ $job->experience }}</td>
@@ -42,18 +46,24 @@
                                                 @foreach ($job->jobSkills as $skill)
                                                     <span class="inline-block bg-gray-200 rounded-full px-2 py-0.5 text-xs font-medium text-gray-700">{{ $skill->name }}</span>
                                                 @endforeach
-                                                @endif
+                                            @else
+                                            -
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="px-4 py-3">
                                         <div class="flex items-center flex-wrap gap-2">
-                                            @foreach (array_map('trim', explode(' , ', $job->extra_info)) as $info)
-                                                <span class="inline-block bg-amber-100 rounded-full px-2 py-0.5 text-xs font-medium text-amber-800">{{ $info }}</span>
-                                            @endforeach
+                                            @if(!empty($job->extra_info))
+                                                @foreach (array_map('trim', explode(',', $job->extra_info)) as $info)
+                                                    <span class="inline-block bg-amber-100 rounded-full px-2 py-0.5 text-xs font-medium text-amber-800">{{ $info }}</span>
+                                                @endforeach
+                                            @else
+                                            -
+                                            @endif
                                         </div>
                                     </td>
                                     <td class="px-4 py-3 flex items-center justify-end">
-                                        <a href="#" class="text-sm px-3 py-1.5 rounded hover:bg-slate-100 transition-colors text-red-500">Delete</a>
+                                        <a href="#" wire:click="delete({{ $job->id }})" onclick="return confirm('Are you sure you want to delete this job posting?')" class="text-sm px-3 py-1.5 rounded hover:bg-slate-100 transition-colors text-red-500">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -61,6 +71,6 @@
                     </table>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>

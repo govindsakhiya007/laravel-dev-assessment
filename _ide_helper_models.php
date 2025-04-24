@@ -23,11 +23,10 @@ namespace App\Models{
  * @property string|null $location
  * @property string|null $extra_info
  * @property string $company_name
- * @property string|null $company_logo
+ * @property string $company_logo
  * @property string|null $skills
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read mixed $company_logo_url
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Skill> $jobSkills
  * @property-read int|null $job_skills_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|JobPosting newModelQuery()

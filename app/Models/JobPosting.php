@@ -11,15 +11,38 @@ class JobPosting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'experience', 'salary', 'location', 'extra_info', 'company_name', 'logo_path', 'skills'];
+    // Fillable fields for mass assignment
+    protected $fillable = [
+        'title',
+        'description',
+        'experience',
+        'salary',
+        'location',
+        'extra_info',
+        'company_name',
+        'company_logo',
+        'skills',
+    ];
 
+    /**
+     * Define many-to-many relationship with Skill
+     * Each job posting can have multiple skills
+     */
     public function jobSkills()
     {
         return $this->belongsToMany(Skill::class, 'job_skill');
     }
 
-    public function getCompanyLogoUrlAttribute()
+    /**
+     * Accessor to get full URL of company logo
+     * Returns a default image if no logo is uploaded
+     *
+     * @return string
+     */
+    public function getCompanyLogoAttribute(): string
     {
-        return $this->company_logo ? asset('storage/company_logos/' . $this->company_logo) : asset('images/default-logo.png');
+        return $this->attributes['company_logo']
+            ? asset('storage/' . $this->attributes['company_logo'])
+            : asset('logo-2.svg');
     }
 }
